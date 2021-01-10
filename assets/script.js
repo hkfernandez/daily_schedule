@@ -1,8 +1,14 @@
 /* 
-assign id to the main container  - hoursInTheDay
+$ assign id to the main container  - hoursInTheDay
 
 loop to generate time slots
     time slots will contain a time, an event and a save button
+    loop 11 times to create values from 8 to 18
+    create a div .&#timeslot[time]
+    create a div and append to .timeslot[time]
+        .#time - set text to time
+        .# eventInput
+        .# saveBtn
 
 pull values from local storage when loading 
     if they don't exist
@@ -25,5 +31,22 @@ use the time of day to update classes to modify event colors
 
 */
 
+var mainDiv = $(".container");
 var currentHour = dayjs ().format('HH');
 
+function createTimeSlots (){
+    for (let i= 8; i < 19; i++) {
+        var timeSlot = $("<div>").attr("id","timeSlot"+[i]);
+        $(timeSlot).text([i]);
+        $(mainDiv).append(timeSlot);
+        
+        var time = $("<div>").attr("id","time"+[i]);
+        $(time).text([i]+":00");
+        $(timeSlot).append(time);
+
+        var eventInput = $("<input>").attr("id","eventInput"+[i]);
+        $(eventInput).text([i]+"Input Text");
+        $(timeSlot).append(eventInput);
+    }
+}
+createTimeSlots();
