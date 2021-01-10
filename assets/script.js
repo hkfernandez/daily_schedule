@@ -53,8 +53,8 @@ function createTimeSlots (){
         var saveBtn = $("<button>").attr("id",[i]);
         $(saveBtn).text("Save");
         $(saveBtn).attr("class", "saveBtn");
-        $(saveBtn).on("click", function(){
-            clickSave();
+        $(saveBtn).on("click", function(e){
+            clickSave(e);
         })
         $(timeSlot).append(saveBtn);
     }
@@ -73,16 +73,16 @@ function pushLocalStorageEvents (){
     localStorage.setItem ("todaysEvents", JSON.stringify(events));
 }
 
-function clickSave () {
-    var events = pullLocalStorageEvents();
-    events.
-
+function clickSave (e) {
+    // var events = pullLocalStorageEvents();
+    var eventIndex =  $(e.target).attr("id");
+    console.log("eventIndex = " +eventIndex);
 }
 
 
 // test
-var events = pullLocalStorageEvents();
-pushLocalStorageEvents();
-var events = pullLocalStorageEvents();
-console.log(events);
+// var events = pullLocalStorageEvents();
+// pushLocalStorageEvents();
+// var events = pullLocalStorageEvents();
+// console.log(events);
 
