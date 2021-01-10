@@ -53,9 +53,6 @@ function createTimeSlots (){
         var saveBtn = $("<button>").attr("id",[i]);
         $(saveBtn).text("Save");
         $(saveBtn).attr("class", "saveBtn");
-        $(saveBtn).on("click", function(e){
-            clickSave(e);
-        })
         $(timeSlot).append(saveBtn);
     }
 }
@@ -63,7 +60,7 @@ createTimeSlots();
 
 function pullLocalStorageEvents (){
     var eventsObj = JSON.parse(localStorage.getItem("todaysEvents"));
-    if (events == null){
+    if (eventsObj == null){
         var eventsObj = {8:"", 9:"" ,10:"" ,11:"",12:"", 12:"", 13:"", 14:"", 15:"", 16:"", 17:"", 18:""};
     }
     return eventsObj;
@@ -73,11 +70,19 @@ function pushLocalStorageEvents (){
     localStorage.setItem ("todaysEvents", JSON.stringify(events));
 }
 
-function clickSave (e) {
-    // var events = pullLocalStorageEvents();
-    var eventIndex =  $(e.target).attr("id");
-    console.log("eventIndex = " +eventIndex);
-}
+$(".saveBtn").on("click", function () {
+    var selectedInput = $(this).prev();
+    console.log($(selectedInput).val());
+    // if (e.target.matches("button")) {
+    //     var events = pullLocalStorageEvents();
+    //     var eventIndex =  $(e.target).attr("id");
+    //     // var inputText = $("this..textarea");
+    //     // console.log("input text" +$(this).attr.value));
+    //     console.log("this = " + $(this));
+    // }
+});
+
+
 
 
 // test
