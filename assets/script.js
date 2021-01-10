@@ -66,20 +66,19 @@ function pullLocalStorageEvents (){
     return eventsObj;
 }
 
-function pushLocalStorageEvents (){
+function pushLocalStorageEvents (events){
     localStorage.setItem ("todaysEvents", JSON.stringify(events));
 }
 
 $(".saveBtn").on("click", function () {
+    var btnId = $(this).attr("id");
+    console.log(btnId);
     var selectedInput = $(this).prev();
-    console.log($(selectedInput).val());
-    // if (e.target.matches("button")) {
-    //     var events = pullLocalStorageEvents();
-    //     var eventIndex =  $(e.target).attr("id");
-    //     // var inputText = $("this..textarea");
-    //     // console.log("input text" +$(this).attr.value));
-    //     console.log("this = " + $(this));
-    // }
+    var inputText = $(selectedInput).val();
+    var events = pullLocalStorageEvents();
+    events[btnId] = inputText;
+    pushLocalStorageEvents(events);
+    console.log(events);
 });
 
 
