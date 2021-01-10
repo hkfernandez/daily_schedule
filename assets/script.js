@@ -1,7 +1,7 @@
 /* 
 $ assign id to the main container  - hoursInTheDay
 
-loop to generate time slots
+$ loop to generate time slots
     time slots will contain a time, an event and a save button
     loop 11 times to create values from 8 to 18
     create a div .&#timeslot[time]
@@ -10,7 +10,7 @@ loop to generate time slots
         .# eventInput
         .# saveBtn
 
-pull values from local storage when loading 
+$pull values from local storage when loading 
     if they don't exist
         create an object
         loop to populate with time slot value keys
@@ -36,17 +36,53 @@ var currentHour = dayjs ().format('HH');
 
 function createTimeSlots (){
     for (let i= 8; i < 19; i++) {
-        var timeSlot = $("<div>").attr("id","timeSlot"+[i]);
-        $(timeSlot).text([i]);
+        var timeSlot = $("<div>").attr("id",[i]);
+        $(timeSlot).attr("class", "row");
         $(mainDiv).append(timeSlot);
         
-        var time = $("<div>").attr("id","time"+[i]);
+        var time = $("<span>").attr("id","time"+[i]);
         $(time).text([i]+":00");
+        $(time).attr("class", "hour");
         $(timeSlot).append(time);
 
         var eventInput = $("<input>").attr("id","eventInput"+[i]);
         $(eventInput).text([i]+"Input Text");
+        $(eventInput).attr("class", "textarea");
         $(timeSlot).append(eventInput);
+
+        var saveBtn = $("<button>").attr("id",[i]);
+        $(saveBtn).text("Save");
+        $(saveBtn).attr("class", "saveBtn");
+        $(saveBtn).on("click", function(){
+            clickSave();
+        })
+        $(timeSlot).append(saveBtn);
     }
 }
 createTimeSlots();
+
+function pullLocalStorageEvents (){
+    var eventsObj = JSON.parse(localStorage.getItem("todaysEvents"));
+    if (events == null){
+        var eventsObj = {8:"", 9:"" ,10:"" ,11:"",12:"", 12:"", 13:"", 14:"", 15:"", 16:"", 17:"", 18:""};
+    }
+    return eventsObj;
+}
+
+function pushLocalStorageEvents (){
+    localStorage.setItem ("todaysEvents", JSON.stringify(events));
+}
+
+function clickSave () {
+    var events = pullLocalStorageEvents();
+    events.
+
+}
+
+
+// test
+var events = pullLocalStorageEvents();
+pushLocalStorageEvents();
+var events = pullLocalStorageEvents();
+console.log(events);
+
