@@ -17,7 +17,7 @@ $pull values from local storage when loading
         JSON.strigify and save time keys with blank values to local storage 
     if the do exit
         JSON.parse and loop through time slots to populate events with existing values
-add an event listener to the save button to save event value to local storage
+$add an event listener to the save button to save event value to local storage
     retreieve the data object from local storage
     JSON.parse data to turn it into an object
     add the data to the correct time slot ksy
@@ -35,6 +35,7 @@ var mainDiv = $(".container");
 var currentHour = dayjs ().format('HH');
 
 function createTimeSlots (){
+    var events = pullLocalStorageEvents();
     for (let i= 8; i < 19; i++) {
         var timeSlot = $("<div>").attr("id",[i]);
         $(timeSlot).attr("class", "row");
@@ -46,7 +47,8 @@ function createTimeSlots (){
         $(timeSlot).append(time);
 
         var eventInput = $("<input>").attr("id","eventInput"+[i]);
-        $(eventInput).text([i]+"Input Text");
+        $(eventInput).val(events[i]);
+        console.log(events[i]);
         $(eventInput).attr("class", "textarea");
         $(timeSlot).append(eventInput);
 
@@ -70,6 +72,7 @@ function pushLocalStorageEvents (events){
     localStorage.setItem ("todaysEvents", JSON.stringify(events));
 }
 
+// event listener for save button
 $(".saveBtn").on("click", function () {
     var btnId = $(this).attr("id");
     console.log(btnId);
