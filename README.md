@@ -16,7 +16,7 @@ Click on a time slot to add an event. Click save to save the event.
 #daily_schedule
 A workday planner that allows you clearly see events with updating timeslot formatting throughout the day. 
 
-! [application image] (./assets/appImage.png)
+![application image](./assets/appImage.png)
 
 https://hkfernandez.github.io/daily_schedule/
 Built with Javascript and CSS
