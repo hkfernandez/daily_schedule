@@ -12,6 +12,7 @@ Built with jQuery, Bootstrap and references the time through dayjs.
 ## Usage 
 
 Click on a time slot to add an event. Click save to save the event. 
+
 ![application image](./assets/appImage.png)
 
 https://hkfernandez.github.io/daily_schedule/
